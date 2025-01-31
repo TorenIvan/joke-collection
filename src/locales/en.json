@@ -1,0 +1,12 @@
+{
+  "tabs": {
+    "all": "All",
+    "programming": "Programming",
+    "favorites": "Favorites",
+    "knock-knock": "Knock-Knock",
+    "dad": "Dad"
+  },
+  "shared": {
+    "rating": "Rating"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "tabs": {
+    "all": "Όλα",
+    "programming": "Προγραμματιστικά",
+    "favorites": "Αγαπημένα",
+    "knock-knock": "Knock-Knock",
+    "dad": "Dad"
+  },
+  "shared": {
+    "rating": "Βαθμολογία"
+  }
+}
