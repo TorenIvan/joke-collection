@@ -38,6 +38,9 @@
     <section class="flex mb-4 gap-4 justify-center md:flex flex-wrap">
       <ul class="list bg-spotify-dark rounded-box shadow-md">
         <AllJokesComponent :isVisible="activeTab === TabType.All" />
+        <DadJokesComponent :isVisible="activeTab === TabType.Dad" />
+        <ProgrammingJokesComponent :isVisible="activeTab === TabType.Programming" />
+        <KnockKnockJokesComponent :isVisible="activeTab === TabType.KnockKnock" />
       </ul>
     </section>
   </div>
@@ -50,6 +53,9 @@ import Tab from './components/Tab.component.vue';
 import { Language, TabType } from './types';
 import { useLanguage } from './composables/useLanguage.composable';
 import AllJokesComponent from './components/AllJokes.component.vue';
+import DadJokesComponent from './components/DadJokes.component.vue';
+import ProgrammingJokesComponent from './components/ProgrammingJokes.component.vue';
+import KnockKnockJokesComponent from './components/KnockKnockJokes.component.vue';
 
 const { t } = useI18n();
 const activeTab = ref<keyof typeof TabType | undefined>(TabType.All);
