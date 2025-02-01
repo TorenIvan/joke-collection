@@ -13,6 +13,7 @@
     "genericError": "Something went wrong. Please, try shuffling again later!"
   },
   "jokes": {
-    "shuffle": "Shuffle"
+    "shuffle": "Shuffle",
+    "close": "Close"
   }
 }
