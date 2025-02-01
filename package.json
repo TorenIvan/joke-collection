@@ -10,12 +10,14 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.1",
+    "@tanstack/vue-query": "^5.66.0",
     "@vueuse/core": "^12.5.0",
     "axios": "^1.7.9",
     "pinia": "^2.3.1",
     "tailwindcss": "^4.0.1",
     "vue": "^3.5.13",
-    "vue-i18n": "^11.1.0"
+    "vue-i18n": "^11.1.0",
+    "vue3-toastify": "^0.2.8"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.22.0",
@@ -23,6 +25,7 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/eslint-config-typescript": "^14.3.0",
     "@vue/tsconfig": "^0.7.0",
+    "daisyui": "^5.0.0-beta.6",
     "eslint": "^9.19.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",

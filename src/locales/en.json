@@ -8,5 +8,11 @@
   },
   "shared": {
     "rating": "Rating"
+  },
+  "errors": {
+    "genericError": "Something went wrong. Please, try shuffling again later!"
+  },
+  "jokes": {
+    "shuffle": "Shuffle"
   }
 }

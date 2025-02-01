@@ -10,3 +10,10 @@ export const Language = {
   en: 'en',
   el: 'el',
 } as const;
+
+export interface Joke {
+  id: number;
+  type: string;
+  setup: string;
+  punchline: string;
+}
