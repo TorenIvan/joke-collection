@@ -1,7 +1,7 @@
 <template>
   <div v-if="isVisible">
     <JokeListComponent
-      v-if="!isEmpty"
+      v-if="jokeMap.size > 0"
       :is-visible="true"
       :is-type-visible="true"
       :jokes="favoriteJokes"
@@ -33,7 +33,6 @@ const emit = defineEmits<Emits>();
 const { isVisible } = defineProps<Props>();
 const { favoriteJokes } = useFavoriteJokes();
 const jokeMap = computed(() => convertJokeArrayToMap(favoriteJokes.value));
-const isEmpty = computed(() => favoriteJokes.value.length > 0);
 
 const handleShowJoke = (id: number) => {
   const joke = jokeMap.value.get(id);
