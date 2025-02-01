@@ -61,7 +61,7 @@
       class="modal modal-bottom sm:modal-middle opacity-0 scale-95 transition-all duration-300 ease-in-out"
     >
       <div
-        class="modal-box text-color-spotify-lightgray border border-color-spotify-gray shadow-lg rounded-lg relative"
+        class="modal-box text-color-spotify-lightgray border border-color-spotify-gray shadow-lg rounded-lg relative bg-spotify-dark"
       >
         <button
           v-if="jokeToShow !== undefined"
@@ -78,7 +78,7 @@
         <div class="modal-action justify-center">
           <form method="dialog">
             <button
-              class="btn bg-color-spotify-green hover:bg-green-600 text-white px-5 py-2 rounded-md transition duration-200"
+              class="btn bg-color-spotify-green hover:bg-green-600 text-white px-5 py-2 rounded-md transition duration-200 bg-green-500"
               @click="handleCloseModal"
             >
               {{ t('jokes.close') }}
