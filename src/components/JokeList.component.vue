@@ -29,8 +29,8 @@
           </svg>
         </button>
         <button class="btn btn-square btn-ghost" @click.stop="toggleFavoriteHandler(joke)">
-          <HeartIcon :is-favorite="true" v-if="isJokeFavorite(joke.id)" />
-          <HeartIcon :is-favorite="false" v-if="!isJokeFavorite(joke.id)" />
+          <HeartIconComponent :is-favorite="true" v-if="isJokeFavorite(joke.id)" />
+          <HeartIconComponent :is-favorite="false" v-if="!isJokeFavorite(joke.id)" />
         </button>
       </div>
       <div
@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import HeartIcon from './HeartIcon.component.vue';
+import HeartIconComponent from './HeartIcon.component.vue';
 import { useFavoriteJokes } from '../composables/useFavoriteJokes.composable';
 import type { Joke } from '../types';
 

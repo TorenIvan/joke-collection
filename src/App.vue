@@ -61,8 +61,16 @@
       class="modal modal-bottom sm:modal-middle opacity-0 scale-95 transition-all duration-300 ease-in-out"
     >
       <div
-        class="modal-box bg-spotify-dark] text-color-spotify-lightgray border border-color-spotify-gray shadow-lg rounded-lg"
+        class="modal-box text-color-spotify-lightgray border border-color-spotify-gray shadow-lg rounded-lg relative"
       >
+        <button
+          v-if="jokeToShow !== undefined"
+          class="btn btn-square btn-ghost absolute top-4 right-4"
+          @click="toggleFavoriteHandler()"
+        >
+          <HeartIconComponent :is-favorite="true" v-if="isJokeFavorite(jokeToShow.id)" />
+          <HeartIconComponent :is-favorite="false" v-if="!isJokeFavorite(jokeToShow.id)" />
+        </button>
         <p class="py-4 text-lg text-center font-semibold text-white">
           {{ jokeToShow?.punchline }}
         </p>
@@ -93,10 +101,13 @@ import DadJokesComponent from './components/DadJokes.component.vue';
 import ProgrammingJokesComponent from './components/ProgrammingJokes.component.vue';
 import KnockKnockJokesComponent from './components/KnockKnockJokes.component.vue';
 import FavoriteJokesComponent from './components/FavoriteJokes.component.vue';
+import { useFavoriteJokes } from './composables/useFavoriteJokes.composable';
+import HeartIconComponent from './components/HeartIcon.component.vue';
 
 const { t } = useI18n();
 const activeTab = ref<keyof typeof TabType | undefined>(TabType.All);
 const { currentLanguage, toggleLanguage } = useLanguage();
+const { isJokeFavorite, addFavoriteJoke, removeFavoriteJoke } = useFavoriteJokes();
 const jokeToShow = ref<Joke | undefined>();
 
 function setActiveTab(tab: keyof typeof TabType) {
@@ -121,6 +132,17 @@ function handleCloseModal() {
       modal.close();
       jokeToShow.value = undefined;
     }, 200); // Wait for animation before closing
+  }
+}
+
+function toggleFavoriteHandler() {
+  if (jokeToShow.value === undefined) {
+    return;
+  }
+  if (isJokeFavorite(jokeToShow.value.id)) {
+    removeFavoriteJoke(jokeToShow.value.id);
+  } else {
+    addFavoriteJoke(jokeToShow.value);
   }
 }
 </script>
