@@ -1,6 +1,6 @@
 <template>
   <div v-if="isVisible">
-    <button @click="shuffleNewJokes" :disabled="isFetching">{{ t('jokes.shuffle') }}</button>
+    <ShuffleButtonComponent :disabled="isFetching" @on-click="shuffleNewJokes" />
     <SkeletonListComponent :is-visible="isFetching" />
     <ul
       class="list bg-spotify-dark rounded-box shadow-md p-4 w-full max-w-2xl md:min-w-128 mx-auto"
@@ -56,16 +56,15 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { useAllJokesQuery } from '../composables/useAllJokesQuery.composable';
 import SkeletonListComponent from './SkeletonList.component.vue';
+import ShuffleButtonComponent from './ShuffleButton.component.vue';
 
 interface Props {
   isVisible: boolean;
 }
 const { isVisible } = defineProps<Props>();
 
-const { t } = useI18n();
 const { isFetching, data, refetch } = useAllJokesQuery();
 
 const shuffleNewJokes = () => {

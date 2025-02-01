@@ -1,12 +1,12 @@
 <template>
   <ul v-if="isVisible" class="list bg-spotify-dark rounded-box shadow-md">
-    <li class="list-row skeleton w-130 h-20 bg-spotify-gray"></li>
-    <li class="list-row skeleton w-130 h-20 bg-spotify-gray"></li>
-    <li class="list-row skeleton w-130 h-20 bg-spotify-gray"></li>
-    <li class="list-row skeleton w-130 h-20 bg-spotify-gray"></li>
-    <li class="list-row skeleton w-130 h-20 bg-spotify-gray"></li>
-    <li class="list-row skeleton w-130 h-20 bg-spotify-gray"></li>
-    <li class="list-row skeleton w-130 h-20 bg-spotify-gray"></li>
+    <li class="list-row skeleton w-130 h-25 bg-spotify-gray"></li>
+    <li class="list-row skeleton w-130 h-25 bg-spotify-gray"></li>
+    <li class="list-row skeleton w-130 h-25 bg-spotify-gray"></li>
+    <li class="list-row skeleton w-130 h-25 bg-spotify-gray"></li>
+    <li class="list-row skeleton w-130 h-25 bg-spotify-gray"></li>
+    <li class="list-row skeleton w-130 h-25 bg-spotify-gray"></li>
+    <li class="list-row skeleton w-130 h-25 bg-spotify-gray"></li>
   </ul>
 </template>
 
