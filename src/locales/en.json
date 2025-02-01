@@ -15,6 +15,8 @@
   "jokes": {
     "shuffle": "Shuffle",
     "close": "Close",
-    "title": "Unlimited Laughs on Shuffle"
+    "title": "Unlimited Laughs on Shuffle",
+    "emptyTitle": "Oops, no favorites added yet!",
+    "emptyBody": "Start adding some by double-tapping any joke you like."
   }
 }
