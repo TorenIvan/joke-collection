@@ -2,12 +2,7 @@
   <div v-if="isVisible">
     <ShuffleButtonComponent :disabled="isFetching" @on-click="shuffleNewJokes" />
     <SkeletonListComponent :is-visible="isFetching" />
-    <JokeListComponent
-      :is-visible="!isFetching"
-      :jokes="data"
-      @show-joke="handleShowJoke"
-      @toggle-favorite="handleToggleFavorite"
-    />
+    <JokeListComponent :is-visible="!isFetching" :jokes="data" @show-joke="handleShowJoke" />
   </div>
 </template>
 
@@ -41,8 +36,5 @@ const handleShowJoke = (id: number) => {
     const jokeRaw = JSON.parse(JSON.stringify(joke));
     emit('onOpenJoke', jokeRaw);
   }
-};
-const handleToggleFavorite = (id: number) => {
-  console.log('toggling joke as fav with id: ', id);
 };
 </script>

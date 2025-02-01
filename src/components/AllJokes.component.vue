@@ -7,7 +7,6 @@
       :is-type-visible="true"
       :jokes="data"
       @show-joke="handleShowJoke"
-      @toggle-favorite="handleToggleFavorite"
     />
   </div>
 </template>
@@ -26,6 +25,7 @@ interface Props {
 }
 interface Emits {
   (event: 'onOpenJoke', joke: Joke): void;
+  (event: 'onToggleFavorite', joke: Joke): void;
 }
 
 const emit = defineEmits<Emits>();
@@ -43,8 +43,5 @@ const handleShowJoke = (id: number) => {
     const jokeRaw = JSON.parse(JSON.stringify(joke));
     emit('onOpenJoke', jokeRaw);
   }
-};
-const handleToggleFavorite = (id: number) => {
-  console.log('toggling joke as fav with id: ', id);
 };
 </script>

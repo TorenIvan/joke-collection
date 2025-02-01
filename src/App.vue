@@ -42,6 +42,10 @@
       <ul class="list bg-spotify-dark rounded-box shadow-md">
         <AllJokesComponent :isVisible="activeTab === TabType.All" @onOpenJoke="openPunchline" />
         <DadJokesComponent :isVisible="activeTab === TabType.Dad" @onOpenJoke="openPunchline" />
+        <FavoriteJokesComponent
+          :isVisible="activeTab === TabType.Favorites"
+          @onOpenJoke="openPunchline"
+        />
         <ProgrammingJokesComponent
           :isVisible="activeTab === TabType.Programming"
           @onOpenJoke="openPunchline"
@@ -88,6 +92,7 @@ import AllJokesComponent from './components/AllJokes.component.vue';
 import DadJokesComponent from './components/DadJokes.component.vue';
 import ProgrammingJokesComponent from './components/ProgrammingJokes.component.vue';
 import KnockKnockJokesComponent from './components/KnockKnockJokes.component.vue';
+import FavoriteJokesComponent from './components/FavoriteJokes.component.vue';
 
 const { t } = useI18n();
 const activeTab = ref<keyof typeof TabType | undefined>(TabType.All);
