@@ -16,7 +16,9 @@ export function useAllJokesQuery() {
 
   watch(isError, (newIsError) => {
     if (newIsError) {
-      toast.error(t('errors.genericError'));
+      if (!toast.isActive('generic-error')) {
+        toast.error(t('errors.genericError'), { toastId: 'generic-error' });
+      }
     }
   });
 
