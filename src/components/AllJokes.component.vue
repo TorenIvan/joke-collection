@@ -18,6 +18,8 @@ import ShuffleButtonComponent from './ShuffleButton.component.vue';
 import JokeListComponent from './JokeList.component.vue';
 import { useAllJokesQuery } from '../composables/useAllJokesQuery.composable';
 import type { Joke } from '../types';
+import { convertJokeArrayToMap } from '../helpers/convertJokeArrayToMap.helper';
+import { computed } from 'vue';
 
 interface Props {
   isVisible: boolean;
@@ -29,13 +31,14 @@ interface Emits {
 const emit = defineEmits<Emits>();
 const { isVisible } = defineProps<Props>();
 const { isFetching, data, refetch } = useAllJokesQuery();
+const jokeMap = computed(() => convertJokeArrayToMap(data.value));
 
 const shuffleNewJokes = () => {
   refetch();
 };
 
 const handleShowJoke = (id: number) => {
-  const joke = (data.value ?? []).find((joke) => joke.id === id);
+  const joke = jokeMap.value.get(id);
   if (joke !== undefined) {
     const jokeRaw = JSON.parse(JSON.stringify(joke));
     emit('onOpenJoke', jokeRaw);

@@ -1,5 +1,8 @@
 <template>
   <div class="flex flex-col gap-8 justify-center max-w-2xl">
+    <h1 class="text-3xl font-bold text-center text-white mt-4">
+      Jokebox: <span class="text-spotify-green">{{ t('jokes.title') }}</span> 😂
+    </h1>
     <section class="flex mb-4 gap-4 justify-center md:flex flex-wrap">
       <button
         class="absolute top-4 right-4 p-2 hover:cursor-pointer border rounded-md text-white font-bold transition-all duration-300 ease-in-out bg-spotify-dark border-spotify-gray hover:bg-spotify-green hover:text-black focus:outline-none focus:ring-2 focus:ring-spotify-green active:scale-95"
@@ -38,9 +41,15 @@
     <section class="flex mb-4 gap-4 justify-center md:flex flex-wrap">
       <ul class="list bg-spotify-dark rounded-box shadow-md">
         <AllJokesComponent :isVisible="activeTab === TabType.All" @onOpenJoke="openPunchline" />
-        <DadJokesComponent :isVisible="activeTab === TabType.Dad" />
-        <ProgrammingJokesComponent :isVisible="activeTab === TabType.Programming" />
-        <KnockKnockJokesComponent :isVisible="activeTab === TabType.KnockKnock" />
+        <DadJokesComponent :isVisible="activeTab === TabType.Dad" @onOpenJoke="openPunchline" />
+        <ProgrammingJokesComponent
+          :isVisible="activeTab === TabType.Programming"
+          @onOpenJoke="openPunchline"
+        />
+        <KnockKnockJokesComponent
+          :isVisible="activeTab === TabType.KnockKnock"
+          @onOpenJoke="openPunchline"
+        />
       </ul>
     </section>
     <dialog

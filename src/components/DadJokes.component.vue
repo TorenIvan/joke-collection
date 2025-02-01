@@ -16,20 +16,31 @@ import { useDadJokesQuery } from '../composables/useDadJokesQuery.composable';
 import SkeletonListComponent from './SkeletonList.component.vue';
 import ShuffleButtonComponent from './ShuffleButton.component.vue';
 import JokeListComponent from './JokeList.component.vue';
+import type { Joke } from '../types';
+import { computed } from 'vue';
+import { convertJokeArrayToMap } from '../helpers/convertJokeArrayToMap.helper';
 
 interface Props {
   isVisible: boolean;
 }
+interface Emits {
+  (event: 'onOpenJoke', joke: Joke): void;
+}
+const emit = defineEmits<Emits>();
 const { isVisible } = defineProps<Props>();
-
 const { isFetching, data, refetch } = useDadJokesQuery();
+const jokeMap = computed(() => convertJokeArrayToMap(data.value));
 
 const shuffleNewJokes = () => {
   refetch();
 };
 
 const handleShowJoke = (id: number) => {
-  console.log('showing joke with id: ', id);
+  const joke = jokeMap.value.get(id);
+  if (joke !== undefined) {
+    const jokeRaw = JSON.parse(JSON.stringify(joke));
+    emit('onOpenJoke', jokeRaw);
+  }
 };
 const handleToggleFavorite = (id: number) => {
   console.log('toggling joke as fav with id: ', id);
