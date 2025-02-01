@@ -5,3 +5,8 @@ export const TabType = {
   Dad: 'Dad',
   Favorites: 'Favorites',
 } as const;
+
+export const Language = {
+  en: 'en',
+  el: 'el',
+} as const;
