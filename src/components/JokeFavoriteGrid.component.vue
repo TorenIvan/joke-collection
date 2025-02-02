@@ -33,11 +33,16 @@
           </td>
           <td>
             <div class="rating">
-              <input type="radio" name="rating-1" class="mask mask-star" />
-              <input type="radio" name="rating-1" class="mask mask-star" />
-              <input type="radio" name="rating-1" class="mask mask-star" />
-              <input type="radio" name="rating-1" class="mask mask-star" />
-              <input type="radio" name="rating-1" class="mask mask-star" />
+              <input
+                v-for="ratingNumber in 5"
+                :key="ratingNumber"
+                type="radio"
+                :name="'rating-' + joke.id"
+                class="mask mask-star bg-green-500"
+                :checked="joke.rating === ratingNumber"
+                :value="joke.rating === ratingNumber"
+                @click.stop="updateJokeRating(joke.id, ratingNumber)"
+              />
             </div>
           </td>
         </tr>
@@ -48,16 +53,17 @@
 
 <script setup lang="ts">
 import { useFavoriteJokes } from '../composables/useFavoriteJokes.composable';
-import type { Joke } from '../types';
+import type { FavoriteJoke } from '../types';
 import HeartIconComponent from './HeartIcon.component.vue';
 const { addFavoriteJoke, removeFavoriteJoke, isJokeFavorite } = useFavoriteJokes();
 
 interface Props {
-  jokes?: Array<Joke>;
+  jokes?: Array<FavoriteJoke>;
 }
 
 interface Emits {
   (event: 'showJoke', id: number): void;
+  (event: 'onJokeRating', id: number, rating: number): void;
 }
 
 const { jokes = [] } = defineProps<Props>();
@@ -67,7 +73,11 @@ const showJokeHandler = (id: number) => {
   emit('showJoke', id);
 };
 
-const toggleFavoriteHandler = (joke: Joke) => {
+const updateJokeRating = (id: number, rating: number) => {
+  emit('onJokeRating', id, rating);
+};
+
+const toggleFavoriteHandler = (joke: FavoriteJoke) => {
   if (isJokeFavorite(joke.id)) {
     removeFavoriteJoke(joke.id);
   } else {

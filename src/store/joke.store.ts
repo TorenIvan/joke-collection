@@ -18,6 +18,12 @@ export const useJokeStore = defineStore('jokeStore', {
       this.jokeCollection = this.jokeCollection.filter((joke) => joke.id !== jokeId);
       this.updateLocalStorage();
     },
+    updateJokeRatingToCollectionOnStore(jokeId: number, rating: number) {
+      this.jokeCollection = this.jokeCollection.map((joke) =>
+        joke.id === jokeId ? { ...joke, rating: rating } : joke
+      );
+      this.updateLocalStorage();
+    },
     updateLocalStorage() {
       localStorage.setItem('jokeCollection', JSON.stringify(this.jokeCollection));
     },

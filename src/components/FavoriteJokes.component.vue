@@ -4,6 +4,7 @@
       v-if="jokeMap.size > 0"
       :jokes="sortedJokes"
       @show-joke="handleShowJoke"
+      @on-joke-rating="handleUpdateJokeRating"
     >
       <template v-slot:header>
         <thead>
@@ -62,7 +63,7 @@ interface Emits {
 const { t } = useI18n();
 const emit = defineEmits<Emits>();
 const { isVisible } = defineProps<Props>();
-const { favoriteJokes } = useFavoriteJokes();
+const { favoriteJokes, updateFavoriteJokeRating } = useFavoriteJokes();
 const jokeMap = computed(() => convertJokeArrayToMap(favoriteJokes.value));
 const {
   sortedJokes,
@@ -79,6 +80,18 @@ const handleShowJoke = (id: number) => {
   if (joke !== undefined) {
     const jokeRaw = JSON.parse(JSON.stringify(joke));
     emit('onOpenJoke', jokeRaw);
+  }
+};
+
+const handleUpdateJokeRating = (id: number, rating: number) => {
+  const joke = jokeMap.value.get(id);
+  if (joke !== undefined) {
+    const jokeRaw = JSON.parse(JSON.stringify(joke));
+    if (jokeRaw.rating === rating) {
+      updateFavoriteJokeRating(id, 0);
+    } else {
+      updateFavoriteJokeRating(id, rating);
+    }
   }
 };
 </script>

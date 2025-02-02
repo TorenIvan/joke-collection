@@ -15,6 +15,10 @@ export function useFavoriteJokes() {
     jokeStore.removeJokeFromCollectionOnStore(jokeId);
   }
 
+  function updateFavoriteJokeRating(jokeId: number, rating: number) {
+    jokeStore.updateJokeRatingToCollectionOnStore(jokeId, rating);
+  }
+
   function isJokeFavorite(jokeId: number): boolean {
     return favoriteJokes.value.some((joke) => joke.id === jokeId);
   }
@@ -23,6 +27,7 @@ export function useFavoriteJokes() {
     favoriteJokes,
     addFavoriteJoke,
     removeFavoriteJoke,
+    updateFavoriteJokeRating,
     isJokeFavorite,
   };
 }
