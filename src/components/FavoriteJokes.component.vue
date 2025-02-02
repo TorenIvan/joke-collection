@@ -1,9 +1,7 @@
 <template>
   <div v-if="isVisible">
-    <JokeListComponent
+    <JokeFavoriteGridComponent
       v-if="jokeMap.size > 0"
-      :is-visible="true"
-      :is-type-visible="true"
       :jokes="favoriteJokes"
       @show-joke="handleShowJoke"
     />
@@ -15,12 +13,12 @@
 </template>
 
 <script setup lang="ts">
-import JokeListComponent from './JokeList.component.vue';
 import type { Joke } from '../types';
 import { computed } from 'vue';
 import { convertJokeArrayToMap } from '../helpers/convertJokeArrayToMap.helper';
 import { useFavoriteJokes } from '../composables/useFavoriteJokes.composable';
 import { useI18n } from 'vue-i18n';
+import JokeFavoriteGridComponent from './JokeFavoriteGrid.component.vue';
 
 interface Props {
   isVisible: boolean;

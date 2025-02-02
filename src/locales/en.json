@@ -6,9 +6,6 @@
     "knock-knock": "Knock-Knock",
     "dad": "Dad"
   },
-  "shared": {
-    "rating": "Rating"
-  },
   "errors": {
     "genericError": "Something went wrong. Please, try shuffling again later!"
   },
@@ -17,6 +14,10 @@
     "close": "Close",
     "title": "Unlimited Laughs on Shuffle",
     "emptyTitle": "Oops, no favorites added yet!",
-    "emptyBody": "Start adding some by double-tapping any joke you like."
+    "emptyBody": "Start adding some by double-tapping any joke you like.",
+    "setup": "Setup",
+    "type": "Type",
+    "actions": "Actions",
+    "rating": "Rating"
   }
 }
