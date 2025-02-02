@@ -7,7 +7,8 @@ export function useFavoriteJokes() {
   const favoriteJokes = computed(() => jokeStore.jokeCollection);
 
   function addFavoriteJoke(joke: Joke) {
-    jokeStore.addJokeToCollectionOnStore(joke);
+    const jokeAsFavorite = { ...joke, rating: 0 };
+    jokeStore.addJokeToCollectionOnStore(jokeAsFavorite);
   }
 
   function removeFavoriteJoke(jokeId: number) {

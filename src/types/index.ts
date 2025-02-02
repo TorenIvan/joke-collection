@@ -17,3 +17,9 @@ export interface Joke {
   setup: string;
   punchline: string;
 }
+
+export interface FavoriteJoke extends Joke {
+  rating: number;
+}
+
+export type SortType = 'asc' | 'desc' | undefined;

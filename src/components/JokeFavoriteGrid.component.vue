@@ -1,23 +1,7 @@
 <template>
   <div class="overflow-x-auto">
     <table class="table">
-      <thead>
-        <tr>
-          <th></th>
-          <th class="text-sm font-bold text-gray-300 break-words w-full select-none">
-            {{ t('jokes.setup') }}
-          </th>
-          <th class="text-sm font-bold text-gray-300 break-words w-full select-none">
-            {{ t('jokes.type') }}
-          </th>
-          <th class="text-sm font-bold text-gray-300 break-words w-full select-none">
-            {{ t('jokes.actions') }}
-          </th>
-          <th class="text-sm font-bold text-gray-300 break-words w-full select-none">
-            {{ t('jokes.rating') }}
-          </th>
-        </tr>
-      </thead>
+      <slot name="header"></slot>
       <tbody>
         <tr
           class="hover"
@@ -63,12 +47,10 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
 import { useFavoriteJokes } from '../composables/useFavoriteJokes.composable';
 import type { Joke } from '../types';
 import HeartIconComponent from './HeartIcon.component.vue';
 const { addFavoriteJoke, removeFavoriteJoke, isJokeFavorite } = useFavoriteJokes();
-const { t } = useI18n();
 
 interface Props {
   jokes?: Array<Joke>;

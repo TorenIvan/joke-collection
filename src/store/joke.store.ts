@@ -1,16 +1,16 @@
 import { defineStore } from 'pinia';
-import type { Joke } from '../types';
+import type { FavoriteJoke } from '../types';
 import { isNullish } from '../helpers/isNullish.helper';
 
 export const useJokeStore = defineStore('jokeStore', {
   state: () => ({
     jokeCollection:
       isNullish(localStorage.getItem('jokeCollection')) === false
-        ? (JSON.parse(localStorage.getItem('jokeCollection')!) as Array<Joke>)
+        ? (JSON.parse(localStorage.getItem('jokeCollection')!) as Array<FavoriteJoke>)
         : [],
   }),
   actions: {
-    addJokeToCollectionOnStore(joke: Joke) {
+    addJokeToCollectionOnStore(joke: FavoriteJoke) {
       this.jokeCollection.push(joke);
       this.updateLocalStorage();
     },
