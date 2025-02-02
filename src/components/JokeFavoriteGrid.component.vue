@@ -9,7 +9,7 @@
           :key="joke.id"
           @dblclick="toggleFavoriteHandler(joke)"
         >
-          <th class="select-none">{{ index }}</th>
+          <th class="select-none">{{ index + 1 }}</th>
           <td class="select-none min-w-[200px] break-words">{{ joke.setup }}</td>
           <td class="select-none">{{ joke.type }}</td>
           <td class="flex-col gap-2">

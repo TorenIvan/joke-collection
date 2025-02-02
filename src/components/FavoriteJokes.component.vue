@@ -12,7 +12,7 @@
       <input
         type="text"
         :placeholder="t('jokes.searchSetup')"
-        class="input input-bordered w-full max-w-xs mb-6 rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent p-3"
+        class="input input-bordered w-full max-w-xs mb-6 bg-spotify-gray text-white placeholder-gray-300 border rounded-md border-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent p-3"
         aria-details="Input to search your favorite jokes by setup"
         v-model="searchText"
       />
