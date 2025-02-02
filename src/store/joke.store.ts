@@ -11,7 +11,8 @@ export const useJokeStore = defineStore('jokeStore', {
   }),
   actions: {
     addJokeToCollectionOnStore(joke: FavoriteJoke) {
-      this.jokeCollection.push(joke);
+      const newCollection = [joke, ...this.jokeCollection];
+      this.jokeCollection = newCollection;
       this.updateLocalStorage();
     },
     removeJokeFromCollectionOnStore(jokeId: number) {
