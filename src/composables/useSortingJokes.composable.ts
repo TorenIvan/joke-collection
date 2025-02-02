@@ -1,5 +1,6 @@
 import { computed, ref, type Ref } from 'vue';
 import type { FavoriteJoke, SortType } from '../types';
+import { cleanStringBeforeSorting } from '../helpers/cleanStringForSorting.helper';
 
 export function useSortingJokes(favoriteJokes: Ref<Array<FavoriteJoke>>) {
   const sortSetup = ref<SortType>(undefined);
@@ -11,11 +12,15 @@ export function useSortingJokes(favoriteJokes: Ref<Array<FavoriteJoke>>) {
 
     if (sortSetup.value !== undefined) {
       jokes.sort((a, b) =>
-        sortSetup.value === 'asc' ? a.setup.localeCompare(b.setup) : b.setup.localeCompare(a.setup)
+        sortSetup.value === 'asc'
+          ? cleanStringBeforeSorting(a.setup).localeCompare(cleanStringBeforeSorting(b.setup))
+          : cleanStringBeforeSorting(b.setup).localeCompare(cleanStringBeforeSorting(a.setup))
       );
     } else if (sortType.value !== undefined) {
       jokes.sort((a, b) =>
-        sortType.value === 'asc' ? a.type.localeCompare(b.type) : b.type.localeCompare(a.type)
+        sortType.value === 'asc'
+          ? cleanStringBeforeSorting(a.type).localeCompare(cleanStringBeforeSorting(b.type))
+          : cleanStringBeforeSorting(b.type).localeCompare(cleanStringBeforeSorting(a.type))
       );
     } else if (sortRating.value !== undefined) {
       jokes.sort((a, b) =>
