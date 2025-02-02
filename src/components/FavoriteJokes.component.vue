@@ -1,19 +1,28 @@
 <template>
   <div v-if="isVisible">
-    <input
-      v-if="jokeMap.size > 0"
-      type="text"
-      :placeholder="t('jokes.searchSetup')"
-      class="input input-bordered w-full max-w-xs mb-6 rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent p-3"
-      aria-details="Input to search your favorite jokes by setup"
-      v-model="searchText"
-    />
-    <section class="flex flex-row justify-between" v-if="jokeMap.size > 0">
-      <FilterByRatingComponent
-        :selected-rating="selectedRatingFilter"
-        @on-apply-filter="handleApplyFilter"
+    <div class="mb-6" v-if="jokeMap.size > 0">
+      <div class="flex flex-row justify-around items-center w-full mb-4">
+        <div class="text-lg font-semibold">
+          {{ t('jokes.averageRating') }}: {{ (totalRating / jokeMap.size).toFixed(2) }}
+        </div>
+        <div class="text-lg font-semibold text-secondary">
+          {{ t('jokes.totalFavorites') }}: {{ jokeMap.size }}
+        </div>
+      </div>
+      <input
+        type="text"
+        :placeholder="t('jokes.searchSetup')"
+        class="input input-bordered w-full max-w-xs mb-6 rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent p-3"
+        aria-details="Input to search your favorite jokes by setup"
+        v-model="searchText"
       />
-    </section>
+      <section class="flex flex-row justify-between">
+        <FilterByRatingComponent
+          :selected-rating="selectedRatingFilter"
+          @on-apply-filter="handleApplyFilter"
+        />
+      </section>
+    </div>
     <div v-if="jokeMap.size === 0" class="text-center p-6 bg-spotify-dark rounded-md shadow-md">
       <h3 class="text-lg font-semibold text-gray-300 mb-4">{{ t('jokes.emptyTitle') }}</h3>
       <p class="text-gray-400 text-base">{{ t('jokes.emptyBody') }}</p>
@@ -109,6 +118,11 @@ const {
 } = useSortingJokes(favoriteJokes);
 const { selectedRatingFilter, filteredJokes, handleApplyFilter } = useFilteringJokes(sortedJokes);
 const { searchText, searchedJokes } = useSearchingJokes(filteredJokes);
+const totalRating = computed(() =>
+  favoriteJokes.value.reduce((accumulator, currentJoke) => {
+    return accumulator + currentJoke.rating;
+  }, 0)
+);
 
 const handleShowJoke = (id: number) => {
   const joke = jokeMap.value.get(id);

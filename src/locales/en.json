@@ -22,6 +22,8 @@
     "filterByRating": "Filter by Rating",
     "searchSetup": "Search setup",
     "emptyFilteredTitle": "Oops, no favorites with rating of",
-    "emptyFilteredSearchTitle": "Oops, no favorites found with these details!"
+    "emptyFilteredSearchTitle": "Oops, no favorites found with these details!",
+    "averageRating": "Average Rating",
+    "totalFavorites": "Total Favorites"
   }
 }
