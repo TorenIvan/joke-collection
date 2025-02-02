@@ -1,8 +1,42 @@
 <template>
   <div v-if="isVisible">
-    <JokeFavoriteGridComponent
+    <input
       v-if="jokeMap.size > 0"
-      :jokes="sortedJokes"
+      type="text"
+      :placeholder="t('jokes.searchSetup')"
+      class="input input-bordered w-full max-w-xs mb-6 rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent p-3"
+      aria-details="Input to search your favorite jokes by setup"
+      v-model="searchText"
+    />
+    <section class="flex flex-row justify-between" v-if="jokeMap.size > 0">
+      <FilterByRatingComponent
+        :selected-rating="selectedRatingFilter"
+        @on-apply-filter="handleApplyFilter"
+      />
+    </section>
+    <div v-if="jokeMap.size === 0" class="text-center p-6 bg-spotify-dark rounded-md shadow-md">
+      <h3 class="text-lg font-semibold text-gray-300 mb-4">{{ t('jokes.emptyTitle') }}</h3>
+      <p class="text-gray-400 text-base">{{ t('jokes.emptyBody') }}</p>
+    </div>
+    <div
+      v-else-if="filteredJokes.length === 0"
+      class="text-center p-6 bg-spotify-dark rounded-md shadow-md"
+    >
+      <h3 class="text-lg font-semibold text-gray-300 mb-4">
+        {{ t('jokes.emptyFilteredTitle') }} {{ selectedRatingFilter }}
+      </h3>
+    </div>
+    <div
+      v-else-if="searchedJokes.length === 0"
+      class="text-center p-6 bg-spotify-dark rounded-md shadow-md"
+    >
+      <h3 class="text-lg font-semibold text-gray-300 mb-4">
+        {{ t('jokes.emptyFilteredSearchTitle') }}
+      </h3>
+    </div>
+    <JokeFavoriteGridComponent
+      v-else
+      :jokes="searchedJokes"
       @show-joke="handleShowJoke"
       @on-joke-rating="handleUpdateJokeRating"
     >
@@ -38,10 +72,6 @@
         </thead>
       </template>
     </JokeFavoriteGridComponent>
-    <div v-else class="text-center p-6 bg-spotify-dark rounded-md shadow-md">
-      <h3 class="text-lg font-semibold text-gray-300 mb-4">{{ t('jokes.emptyTitle') }}</h3>
-      <p class="text-gray-400 text-base">{{ t('jokes.emptyBody') }}</p>
-    </div>
   </div>
 </template>
 
@@ -53,6 +83,9 @@ import { useFavoriteJokes } from '../composables/useFavoriteJokes.composable';
 import { useI18n } from 'vue-i18n';
 import JokeFavoriteGridComponent from './JokeFavoriteGrid.component.vue';
 import { useSortingJokes } from '../composables/useSortingJokes.composable';
+import FilterByRatingComponent from './FilterByRating.component.vue';
+import { useFilteringJokes } from '../composables/useFilteringJokes.composable';
+import { useSearchingJokes } from '../composables/useSearchingJokes.composable';
 
 interface Props {
   isVisible: boolean;
@@ -74,6 +107,8 @@ const {
   handleSortBySetup,
   handleSortByRating,
 } = useSortingJokes(favoriteJokes);
+const { selectedRatingFilter, filteredJokes, handleApplyFilter } = useFilteringJokes(sortedJokes);
+const { searchText, searchedJokes } = useSearchingJokes(filteredJokes);
 
 const handleShowJoke = (id: number) => {
   const joke = jokeMap.value.get(id);

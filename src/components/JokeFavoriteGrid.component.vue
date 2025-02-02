@@ -9,9 +9,9 @@
           :key="joke.id"
           @dblclick="toggleFavoriteHandler(joke)"
         >
-          <th>{{ index }}</th>
-          <td>{{ joke.setup }}</td>
-          <td>{{ joke.type }}</td>
+          <th class="select-none">{{ index }}</th>
+          <td class="select-none">{{ joke.setup }}</td>
+          <td class="select-none">{{ joke.type }}</td>
           <td class="flex-col gap-2">
             <button class="btn btn-square btn-ghost" @click.stop="toggleFavoriteHandler(joke)">
               <HeartIconComponent :is-favorite="true" v-if="isJokeFavorite(joke.id)" />
@@ -40,7 +40,7 @@
                 :name="'rating-' + joke.id"
                 class="mask mask-star bg-green-500"
                 :checked="joke.rating === ratingNumber"
-                :value="joke.rating === ratingNumber"
+                :value="ratingNumber"
                 @click.stop="updateJokeRating(joke.id, ratingNumber)"
               />
             </div>

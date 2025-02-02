@@ -18,6 +18,10 @@
     "setup": "Setup",
     "type": "Τύπος",
     "actions": "Ενέργειες",
-    "rating": "Βαθμολογία"
+    "rating": "Βαθμολογία",
+    "filterByRating": "Φίλτρο ανά βαθμολογία",
+    "searchSetup": "Ψάξε setup",
+    "emptyFilteredTitle": "Ωχ, δεν έχεις αγαπημένα με βαθμολογία",
+    "emptyFilteredSearchTitle": "Ωχ, δεν έχεις αγαπημένα με αυτά τα στοιχεία που ψάχνεις!"
   }
 }
