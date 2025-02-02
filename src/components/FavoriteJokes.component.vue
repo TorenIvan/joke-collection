@@ -1,11 +1,11 @@
 <template>
   <div v-if="isVisible">
     <div class="mb-6" v-if="jokeMap.size > 0">
-      <div class="flex flex-row justify-around items-center w-full mb-4">
-        <div class="text-lg font-semibold">
-          {{ t('jokes.averageRating') }}: {{ (totalRating / jokeMap.size).toFixed(2) }}
+      <div class="flex flex-col md:flex-row justify-around items-center w-full mb-4">
+        <div class="text-lg font-semibold text-center md:text-left">
+          {{ t('jokes.averageRating') }}: {{ (totalRating / jokeMap.size).toFixed(1) }}
         </div>
-        <div class="text-lg font-semibold text-secondary">
+        <div class="text-lg font-semibold text-secondary text-center md:text-left">
           {{ t('jokes.totalFavorites') }}: {{ jokeMap.size }}
         </div>
       </div>
@@ -16,10 +16,11 @@
         aria-details="Input to search your favorite jokes by setup"
         v-model="searchText"
       />
-      <section class="flex flex-row justify-between">
+      <section class="flex flex-col sm:flex-row justify-center sm:items-center mb-6">
         <FilterByRatingComponent
           :selected-rating="selectedRatingFilter"
           @on-apply-filter="handleApplyFilter"
+          class="w-full sm:w-auto"
         />
       </section>
     </div>

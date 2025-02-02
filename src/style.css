@@ -20,13 +20,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html,
 body {
   margin: 0;
-  display: flex;
-  min-width: 320px;
+  width: 100%;
+  min-width: 100vw;
   min-height: 100vh;
+  overflow-x: auto;
   background-color: var(--color-spotify-dark);
-  color: var(--color-spotify-lightgray);
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 

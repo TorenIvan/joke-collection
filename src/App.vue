@@ -1,45 +1,45 @@
 <template>
-  <div class="flex flex-col gap-8 justify-center max-w-2xl">
+  <button
+    class="absolute mb-6 top-4 right-4 p-2 hover:cursor-pointer border rounded-md text-white font-bold transition-all duration-300 ease-in-out bg-spotify-dark border-spotify-gray hover:bg-spotify-green hover:text-black focus:outline-none focus:ring-2 focus:ring-spotify-green active:scale-95"
+    @click="toggleLanguage"
+  >
+    {{ currentLanguage === Language.en ? Language.el.toUpperCase() : Language.en.toUpperCase() }}
+  </button>
+  <div class="flex flex-col gap-8 justify-center max-w-2xl mx-auto px-4 mt-5">
     <h1 class="text-3xl font-bold text-center text-white mt-4">
       Jokebox: <span class="text-spotify-green">{{ t('jokes.title') }}</span> 😂
     </h1>
-    <section class="flex mb-4 gap-4 justify-center md:flex flex-wrap">
-      <button
-        class="absolute top-4 right-4 p-2 hover:cursor-pointer border rounded-md text-white font-bold transition-all duration-300 ease-in-out bg-spotify-dark border-spotify-gray hover:bg-spotify-green hover:text-black focus:outline-none focus:ring-2 focus:ring-spotify-green active:scale-95"
-        @click="toggleLanguage"
-      >
-        {{
-          currentLanguage === Language.en ? Language.el.toUpperCase() : Language.en.toUpperCase()
-        }}
-      </button>
-      <Tab
-        :title="t('tabs.all')"
-        :isActive="activeTab === TabType.All"
-        @click="setActiveTab(TabType.All)"
-      />
-      <Tab
-        :title="t('tabs.favorites')"
-        :isActive="activeTab === TabType.Favorites"
-        @click="setActiveTab(TabType.Favorites)"
-      />
-      <Tab
-        :title="t('tabs.programming')"
-        :isActive="activeTab === TabType.Programming"
-        @click="setActiveTab(TabType.Programming)"
-      />
-      <Tab
-        :title="t('tabs.dad')"
-        :isActive="activeTab === TabType.Dad"
-        @click="setActiveTab(TabType.Dad)"
-      />
-      <Tab
-        :title="t('tabs.knock-knock')"
-        :isActive="activeTab === TabType.KnockKnock"
-        @click="setActiveTab(TabType.KnockKnock)"
-      />
+    <section class="relative mb-4 gap-4 justify-center md:flex md:flex-wrap">
+      <div class="flex flex-wrap gap-4 justify-center w-full">
+        <Tab
+          :title="t('tabs.all')"
+          :isActive="activeTab === TabType.All"
+          @click="setActiveTab(TabType.All)"
+        />
+        <Tab
+          :title="t('tabs.favorites')"
+          :isActive="activeTab === TabType.Favorites"
+          @click="setActiveTab(TabType.Favorites)"
+        />
+        <Tab
+          :title="t('tabs.programming')"
+          :isActive="activeTab === TabType.Programming"
+          @click="setActiveTab(TabType.Programming)"
+        />
+        <Tab
+          :title="t('tabs.dad')"
+          :isActive="activeTab === TabType.Dad"
+          @click="setActiveTab(TabType.Dad)"
+        />
+        <Tab
+          :title="t('tabs.knock-knock')"
+          :isActive="activeTab === TabType.KnockKnock"
+          @click="setActiveTab(TabType.KnockKnock)"
+        />
+      </div>
     </section>
-    <section class="flex mb-4 gap-4 justify-center md:flex flex-wrap">
-      <ul class="list bg-spotify-dark rounded-box shadow-md">
+    <section class="flex mb-4 gap-4 justify-center md:flex-row flex-wrap">
+      <ul class="list bg-spotify-dark rounded-box shadow-md w-full md:w-auto">
         <AllJokesComponent :isVisible="activeTab === TabType.All" @onOpenJoke="openPunchline" />
         <DadJokesComponent :isVisible="activeTab === TabType.Dad" @onOpenJoke="openPunchline" />
         <FavoriteJokesComponent

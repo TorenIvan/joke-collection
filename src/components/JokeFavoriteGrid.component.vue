@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-x-auto">
+  <div class="overflow-x-auto bg-spotify-dark p-4 rounded-lg shadow-md">
     <table class="table">
       <slot name="header"></slot>
       <tbody>
@@ -10,7 +10,7 @@
           @dblclick="toggleFavoriteHandler(joke)"
         >
           <th class="select-none">{{ index }}</th>
-          <td class="select-none">{{ joke.setup }}</td>
+          <td class="select-none min-w-[200px] break-words">{{ joke.setup }}</td>
           <td class="select-none">{{ joke.type }}</td>
           <td class="flex-col gap-2">
             <button class="btn btn-square btn-ghost" @click.stop="toggleFavoriteHandler(joke)">
