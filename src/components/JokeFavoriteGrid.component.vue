@@ -7,7 +7,7 @@
           class="hover"
           v-for="(joke, index) in jokes"
           :key="joke.id"
-          @click="showJokeHandler(joke.id)"
+          @dblclick="toggleFavoriteHandler(joke)"
         >
           <th>{{ index }}</th>
           <td>{{ joke.setup }}</td>
