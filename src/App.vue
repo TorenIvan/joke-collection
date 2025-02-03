@@ -7,7 +7,7 @@
   </button>
   <div class="flex flex-col gap-8 justify-center max-w-2xl mx-auto px-4 mt-5">
     <h1 class="text-3xl font-bold text-center text-white mt-4">
-      Jokebox: <span class="text-spotify-green">{{ t('jokes.title') }}</span> 😂
+      {{ t('jokes.appName') }}: <span class="text-spotify-green">{{ t('jokes.title') }}</span> 😂
     </h1>
     <section class="relative mb-4 gap-4 justify-center md:flex md:flex-wrap">
       <div class="flex flex-wrap gap-4 justify-center w-full">
@@ -131,7 +131,7 @@ function handleCloseModal() {
     setTimeout(() => {
       modal.close();
       jokeToShow.value = undefined;
-    }, 200); // Wait for animation before closing
+    }, 200);
   }
 }
 

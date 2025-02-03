@@ -10,6 +10,7 @@
     "genericError": "Something went wrong. Please, try shuffling again later!"
   },
   "jokes": {
+    "appName": "Jokebox",
     "shuffle": "Shuffle",
     "close": "Close",
     "title": "Unlimited Laughs on Shuffle",
